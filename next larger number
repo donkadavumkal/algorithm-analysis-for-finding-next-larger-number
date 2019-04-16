@@ -1,0 +1,62 @@
+#include<stdio.h>
+#include<time.h>
+int main()
+{
+int n,i,j,pos,num,A[100],choice,ch;
+clock_t t1,t2;
+double m;
+printf("enter the number of elements ");
+scanf("%d",&n);
+printf("enter the elements ");
+for(i=0;i<n;i++)
+	scanf("%d",&A[i]);
+t1=clock();
+do
+{
+	printf("1.Delete next element\n2.Display next large element\nEnter your choice ");
+	scanf("%d",&choice);
+	if(choice==1)
+	{
+		printf("enter the position to delete ");
+		scanf("%d",&pos);
+		for(i=0;i<n;i++)
+		{
+			if(i==pos)
+			{
+				for(j=i;j<n;j++)
+					A[j]=A[j+1];
+			}
+		}
+		for(i=0;i<n-1;i++)
+			printf("%d\t",A[i]);
+	}
+	else if(choice==2)
+	{
+		printf("enter the number to find the next larger number ");
+		scanf("%d",&num);
+		for(i=0;i<n;i++)
+		{
+			if(A[i]==num)
+			{
+				for(j=i+1;j<n;j++)
+				{
+					if(A[j]>A[i])
+					{
+						printf("%d is the next larger number",A[j]);
+						break;
+					}
+				}
+			}
+		}
+	}
+	else
+		printf("Wrong Choice ");
+	printf("\ndo you want to continue (1/0) ");
+	scanf("%d",&ch);
+}
+while(ch!=0);
+t2=clock();
+m=(double)(t2-t1)/CLOCKS_PER_SEC;
+printf("time taken is %f\n",m);
+return 0;	
+}
